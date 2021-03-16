@@ -1,0 +1,52 @@
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+  text-align: left;
+}
+
+li {
+  display: flex;
+  min-height: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0.5rem 0;
+  padding: 0 0.9rem;
+  background: white;
+  border-radius: 5px;
+}
+.checkBtn {
+  line-height: 45px;
+  color: #62acde;
+  margin-right: 5px;
+}
+.removeBtn {
+  margin-left: auto;
+  color: #de4343;
+}
+.removeBtn:hover {
+  cursor: pointer;
+}
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.list-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.list-exit {
+  opacity: 1;
+}
+.list-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
+
+
