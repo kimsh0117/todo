@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Todo.module.css'
 
 import { TodoHeader } from "./TodoHeader/TodoHeader";
 import { TodoInput } from "./TodoInput/TodoInput";
@@ -7,7 +8,7 @@ import { TodoFooter } from "./TodoFooter/TodoFooter";
 
 export function Todo() {
   return (
-    <div>
+    <div className={styles.todo}>
       <TodoHeader />
       <TodoInput/>
       <TodoList/>

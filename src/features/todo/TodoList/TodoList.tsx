@@ -12,7 +12,7 @@ export function TodoList() {
       timeout={300}
       classNames="list"
     >
-      <li className="shadow">
+      <li className="shadow todo-list">
         <i
           className={`checkBtn fa fa-check`}
           aria-hidden="true">
@@ -29,7 +29,7 @@ export function TodoList() {
   ));
   return (
     <section>
-      <TransitionGroup component="ul">
+      <TransitionGroup component="ul" className="todo-ul">
         {list}
       </TransitionGroup>
     </section>
