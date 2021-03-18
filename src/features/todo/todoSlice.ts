@@ -88,7 +88,7 @@ export const selectedToday = (state: RootState) => {
   let today: Todo = {}
   let d = new Date();
   for (const [key, value] of Object.entries(state.todo.task)) {
-    if(value.created?.getDate() == d.getDate()) {
+    if(value.created?.getDate() === d.getDate()) {
         today[key] = value;
     }
   }

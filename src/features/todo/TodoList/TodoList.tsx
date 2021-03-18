@@ -1,14 +1,24 @@
-import React from "react";
+import React, { MouseEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import useTodo from "../useTodo";
 import { Todo } from "../todoSlice";
 import _ from "lodash";
 import "./TodoList.css";
 
 export function TodoList() {
-  const { task, deleted, onChangeImportant, onChangeDone, done, today } = useTodo();
+  const {
+    task,
+    deleted,
+    onChangeImportant,
+    onChangeDone,
+    onRemoveTodo,
+    done,
+    today,
+  } = useTodo();
   const location = useLocation();
   const chooseList = (path: string): Todo => {
     if (path === "/") return today;
@@ -16,9 +26,25 @@ export function TodoList() {
     if (path === "/important") return done;
     return task;
   };
+  const [mouseX, setMouseX] = useState<null | number>(null);
+  const [mouseY, setMouseY] = useState<null | number>(null);
+  const [tempItem, setTempItem] = useState("");
+
+  const handleContextMenu = (e: MouseEvent, id: string): void => {
+    setMouseX(e.clientX - 2);
+    setMouseY(e.clientY - 4);
+    setTempItem(id);
+  }
+  const handleContextMenuClose = () => {
+    setMouseX(null);
+    setMouseY(null);
+  }
   let list = _.map(chooseList(location.pathname), (item) => (
     <CSSTransition key={item.id} timeout={300} classNames="list">
-      <li className="shadow todo-list">
+      <li className="shadow todo-list" onContextMenu={(e: MouseEvent) => {
+        e.preventDefault();
+        handleContextMenu(e, item.id);
+      }}>
         <span onClick={() => onChangeDone(item.id)} className="checkIcons">
           {item.done ? (
             <i className={`checkBtn fa fa-check`} aria-hidden="true"></i>
@@ -50,6 +76,23 @@ export function TodoList() {
       <TransitionGroup component="ul" className="todo-ul">
         {list}
       </TransitionGroup>
+      <Menu
+        keepMounted
+        open={mouseY !== null}
+        onClose={handleContextMenuClose}
+        anchorReference="anchorPosition"
+        anchorPosition={
+          mouseY !== null && mouseX !== null
+            ? { top: mouseY, left: mouseX }
+            : undefined
+        }
+      >
+        <MenuItem onClick={() => {
+          onRemoveTodo(tempItem);
+          handleContextMenuClose();
+          setTempItem("");
+        }}>삭제</MenuItem>
+      </Menu>
     </section>
   );
 }
