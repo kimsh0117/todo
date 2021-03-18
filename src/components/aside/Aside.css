@@ -1,11 +1,59 @@
 .aside {
-  background-color: #2c3e50;
-  color: white;
+    background-color: #2c3e50;
+    color: white;
 }
-.aside input {
-  width: 80%;
+
+.inputBox i {
+    position: absolute;
 }
+
+.inputBox {
+    margin: 10px 0 12px 15px;
+    width: 100%;
+}
+
+.icon {
+    padding: 4px 0 0 7px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.aside__input {
+    width: 70%;
+    padding: 2px 0 2px 25px;
+    border-radius: 3px;
+    font-size: .8rem;
+}
+
+.aside__input:focus {
+    outline: none;
+}
+
 .aside ul {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
+    padding-bottom: 7px;
+    margin: 0 auto;
+}
+
+.aside ul li {
+    padding: 5px 20px;
+}
+
+.aside ul li:nth-child(1) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.aside a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: white;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.selected {
+    background-color: rgba(246, 246, 248, 0.3);
 }

@@ -5,7 +5,8 @@ import {
   clearTodo,
   selectTodo,
   selectDeleted,
-  Item } from './todoSlice';
+  Item,
+} from "./todoSlice";
 import { useCallback } from "react";
 // import { createSelector } from '@reduxjs/toolkit';
 
@@ -15,14 +16,12 @@ export default function useTodo() {
 
   const dispatch = useDispatch();
 
-  const onAddTodo = useCallback(
-    (diff: Item) => dispatch(addTodo(diff)),
-    [dispatch]
-  );
-  const onRemoveTodo = useCallback(
-    (id: string) => dispatch(removeTodo(id)),
-    [dispatch]
-  );
+  const onAddTodo = useCallback((diff: Item) => dispatch(addTodo(diff)), [
+    dispatch,
+  ]);
+  const onRemoveTodo = useCallback((id: string) => dispatch(removeTodo(id)), [
+    dispatch,
+  ]);
   const onClearTodo = useCallback(() => dispatch(clearTodo()), [dispatch]);
 
   return {
@@ -31,5 +30,5 @@ export default function useTodo() {
     onAddTodo,
     onRemoveTodo,
     onClearTodo,
-  }
+  };
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Todo.module.css'
+import React from "react";
+import styles from "./Todo.module.css";
 
 import { TodoHeader } from "./TodoHeader/TodoHeader";
 import { TodoInput } from "./TodoInput/TodoInput";
@@ -10,9 +10,9 @@ export function Todo() {
   return (
     <div className={styles.todo}>
       <TodoHeader />
-      <TodoInput/>
-      <TodoList/>
-      <TodoFooter/>
+      <TodoInput />
+      <TodoList />
+      <TodoFooter />
     </div>
-  )
+  );
 }

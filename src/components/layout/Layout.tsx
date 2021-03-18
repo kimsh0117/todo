@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 
-import { makeStyles, Theme } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import { makeStyles, Theme } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 
-import Aside from '../aside/Aside';
+import Aside from "../aside/Aside";
 
-import './Layout.css';
+import "./Layout.css";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,15 +14,15 @@ interface LayoutProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   app: {
-    width: '100%',
-    height: '100vh',
-    gridTemplateColumns: '200px auto',
+    width: "100%",
+    height: "100vh",
+    gridTemplateColumns: "200px auto",
     gridTemplateAreas: `
       "aside main"
     `,
-    [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: '1fr',
-      gridTemplateRows: '1fr auto',
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "1fr",
+      gridTemplateRows: "1fr auto",
       gridTemplateAreas: `
       "aside"
       "main"
@@ -30,11 +30,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   main: {
-    gridArea: 'main',
-  }
-}))
+    gridArea: "main",
+  },
+}));
 
-const Layout = ({children}: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   const classes = useStyles();
   return (
     <Container
@@ -50,7 +50,7 @@ const Layout = ({children}: LayoutProps) => {
         </Box>
       </Box>
     </Container>
-  )
-}
+  );
+};
 
-export default  Layout;
+export default Layout;
