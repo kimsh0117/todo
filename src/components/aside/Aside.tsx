@@ -39,6 +39,15 @@ const Aside = () => {
           ></i>
           <NavLink to="/planned">계획된 일정</NavLink>
         </li>
+        <li className={location.pathname === "/deleted" ? "selected" : ""}>
+          <i
+            className="lni lni-trash"
+            style={{
+              color: "#9AFFD2",
+            }}
+          ></i>
+          <NavLink to="/deleted">삭제된 작업</NavLink>
+        </li>
         <li className={location.pathname === "/task" ? "selected" : ""}>
           <i
             className="lni lni-book"

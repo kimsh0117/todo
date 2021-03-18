@@ -1,52 +1,77 @@
+.todo_main {
+    grid-area: main;
+    overflow: auto;
+}
+
 .todo-ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin-top: 0;
-  text-align: left;
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0;
+    text-align: left;
 }
 
 .todo-list {
-  display: flex;
-  min-height: 50px;
-  height: 50px;
-  line-height: 50px;
-  margin: 0.5rem 0;
-  padding: 0 0.9rem;
-  background: white;
-  border-radius: 5px;
+    display: flex;
+    min-height: 50px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0.5rem 0;
+    padding: 0 0.9rem;
+    background: white;
+    border-radius: 5px;
+    width: 100%;
 }
+
+.checkIcons {
+    display: flex;
+    align-items: center;
+    width: 6%;
+}
+
 .checkBtn {
-  line-height: 45px;
-  color: #62acde;
-  margin-right: 5px;
+    color: #62acde;
+    margin-right: 10px;
 }
-.removeBtn {
-  margin-left: auto;
-  color: #de4343;
+
+.checkBtn:hover {
+    cursor: pointer;
 }
-.removeBtn:hover {
-  cursor: pointer;
+
+.itemIcons {
+    margin-left: auto;
 }
+
+.delete {
+    color: #de4343;
+}
+
+.delete:hover,
+.why:hover {
+    cursor: pointer;
+}
+
 .list-item {
-  display: inline-block;
-  margin-right: 10px;
+    display: inline-block;
+    margin-right: 10px;
 }
+
 .list-enter {
-  opacity: 0;
-  transform: scale(0.9);
+    opacity: 0;
+    transform: scale(0.9);
 }
+
 .list-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 300ms, transform 300ms;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
 }
+
 .list-exit {
-  opacity: 1;
+    opacity: 1;
 }
+
 .list-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
 }
-
-

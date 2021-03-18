@@ -1,19 +1,32 @@
-input:focus {
-  outline: none;
-}
 .inputBox {
-  background: white;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 5px;
+    grid-area: footer;
+    background: white;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+    padding: 0 0.9rem;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
-.inputBox input {
-  border-style: none;
-  font-size: 0.9rem;
-}
+
 .addBtn {
-  vertical-align: middle;
+    vertical-align: middle;
+    margin-left: 2px;
 }
+
 .addBtn:hover {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+.todo_input {
+    border-style: none;
+    font-size: 0.9rem;
+    margin-left: 15px;
+    width: 95%;
+}
+
+.todo_input:focus {
+    outline: none;
 }

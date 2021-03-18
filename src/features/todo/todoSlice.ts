@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import _ from "lodash";
 
-// 완료 항목 추가
-// 생성 날짜 추가
-// 완료 날짜 추가
 export interface Item {
   id: string;
   task: string;
+  impotant: boolean | null;
+  created: Date | null;
+  done: boolean | null;
 }
 
 export interface Todo {
@@ -15,11 +15,12 @@ export interface Todo {
 }
 
 export interface TodoState {
-  todo: Todo;
+  task: Todo;
   deleted: Todo;
 }
+
 const initialState: TodoState = {
-  todo: {},
+  task: {},
   deleted: {},
 };
 
@@ -28,36 +29,69 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, { payload }: PayloadAction<Item>) => {
-      state.todo = {
-        ...state.todo,
+      state.task = {
+        ...state.task,
         [payload.id]: {
           id: payload.id,
           task: payload.task,
+          impotant: payload.impotant,
+          created: payload.created,
+          done: payload.done,
         },
       };
     },
     removeTodo: (state, { payload }: PayloadAction<string>) => {
       state.deleted = {
         ...state.deleted,
-        [payload]: state.todo![payload],
+        [payload]: state.task![payload],
       };
 
-      state.todo = _.omit(state.todo, payload);
+      state.task = _.omit(state.task, payload);
+    },
+    changeImportand: (state, { payload }: PayloadAction<string>) => {
+      state.task[payload].impotant = !state.task[payload].impotant;
+    },
+    changeDone: (state, { payload }: PayloadAction<string>) => {
+      state.task[payload].done = !state.task[payload].done;
     },
     clearTodo: (state) => {
       state.deleted = {
-        ...state.todo,
+        ...state.task,
         ...state.deleted,
       };
 
-      state.todo = {};
+      state.task = {};
     },
   },
 });
 
-export const { addTodo, removeTodo, clearTodo } = todoSlice.actions;
+export const {
+  addTodo,
+  removeTodo,
+  clearTodo,
+  changeImportand,
+  changeDone,
+} = todoSlice.actions;
 
-export const selectTodo = (state: RootState) => state.todo.todo;
+export const selectTask = (state: RootState) => state.todo.task;
 export const selectDeleted = (state: RootState) => state.todo.deleted;
-
+export const selectDone = (state: RootState) => {
+  let done: Todo = {};
+  for (const [key, value] of Object.entries(state.todo.task)) {
+    if (value.impotant) {
+      done[key] = value;
+    }
+  }
+  return done;
+};
+export const selectedToday = (state: RootState) => {
+  let today: Todo = {}
+  let d = new Date();
+  for (const [key, value] of Object.entries(state.todo.task)) {
+    if(value.created?.getDate() == d.getDate()) {
+        today[key] = value;
+    }
+  }
+  return today;
+};
 export default todoSlice.reducer;

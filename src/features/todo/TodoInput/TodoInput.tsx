@@ -7,27 +7,47 @@ export function TodoInput() {
   const { onAddTodo } = useTodo();
   const [value, setValue] = useState("");
   const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      onAddTodo({ id: v4(), task: value });
+    if (event.key === "Enter" && value !== "") {
+      onAddTodo({
+        id: v4(),
+        task: value,
+        impotant: false,
+        created: new Date(),
+        done: false,
+      });
       setValue("");
     }
   };
   return (
-    <div className={styles.inputBox}>
-      <input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onKeyPress={handleKeyPress}
-        type="text"
-        placeholder="Type what you have to do"
-      />
-      <span className="addContainer">
+    <div className={`${styles.inputBox}`}>
+      <div style={{ width: '5%', margin: '0'}}>
         <i
           className={`${styles.addBtn} fa fa-plus`}
           aria-hidden="true"
-          onClick={() => onAddTodo({ id: v4(), task: value })}
+          onClick={() => {
+            if (value !== "") {
+              onAddTodo({
+                id: v4(),
+                task: value,
+                impotant: false,
+                created: new Date(),
+                done: false,
+              });
+              setValue("");
+            }
+          }}
         ></i>
-      </span>
+      </div>
+      <div style={{width: '95%'}}>
+        <input
+          className={styles.todo_input}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onKeyPress={handleKeyPress}
+          type="text"
+          placeholder="작업 추가"
+        />
+      </div>
     </div>
   );
 }

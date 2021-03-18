@@ -1,1 +1,10 @@
+.todo_header {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.title {
+    margin: 0;
+}
