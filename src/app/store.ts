@@ -7,6 +7,9 @@ export const store = configureStore({
     counter: counterReducer,
     todo: todoReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  })
 });
 
 export type RootState = ReturnType<typeof store.getState>;

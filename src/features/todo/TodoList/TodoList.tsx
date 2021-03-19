@@ -2,8 +2,8 @@ import React, { MouseEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import useTodo from "../useTodo";
 import { Todo } from "../todoSlice";
 import _ from "lodash";
@@ -34,20 +34,27 @@ export function TodoList() {
     setMouseX(e.clientX - 2);
     setMouseY(e.clientY - 4);
     setTempItem(id);
-  }
+  };
   const handleContextMenuClose = () => {
     setMouseX(null);
     setMouseY(null);
-  }
+  };
   let list = _.map(chooseList(location.pathname), (item) => (
     <CSSTransition key={item.id} timeout={300} classNames="list">
-      <li className="shadow todo-list" onContextMenu={(e: MouseEvent) => {
-        e.preventDefault();
-        handleContextMenu(e, item.id);
-      }}>
+      <li
+        className="shadow todo-list"
+        onContextMenu={(e: MouseEvent) => {
+          e.preventDefault();
+          handleContextMenu(e, item.id);
+        }}
+      >
         <span onClick={() => onChangeDone(item.id)} className="checkIcons">
           {item.done ? (
-            <i className={`checkBtn fa fa-check`} aria-hidden="true"></i>
+            <i
+              className={`checkBtn fa fa-check`}
+              aria-hidden="true"
+              style={{ marginLeft: "4px" }}
+            ></i>
           ) : (
             <FiberManualRecordOutlinedIcon className="checkBtn" />
           )}
@@ -87,11 +94,15 @@ export function TodoList() {
             : undefined
         }
       >
-        <MenuItem onClick={() => {
-          onRemoveTodo(tempItem);
-          handleContextMenuClose();
-          setTempItem("");
-        }}>삭제</MenuItem>
+        <MenuItem
+          onClick={() => {
+            onRemoveTodo(tempItem);
+            handleContextMenuClose();
+            setTempItem("");
+          }}
+        >
+          삭제
+        </MenuItem>
       </Menu>
     </section>
   );
